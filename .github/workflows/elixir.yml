@@ -86,6 +86,8 @@ jobs:
       matrix:
         elixir: ['1.14.1']
         otp: ['25']
+    env:
+      POSTGRES_HOST: localhost
     services:
       db:
         image: postgres:latest
