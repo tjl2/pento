@@ -1,5 +1,4 @@
 defmodule PentoWeb.WrongLive do
-  require Logger
   use Phoenix.LiveView, layout: {PentoWeb.LayoutView, "live.html"}
 
   def mount(_params, _session, socket) do
