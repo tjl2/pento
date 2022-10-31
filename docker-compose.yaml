@@ -5,6 +5,8 @@ services:
     environment:
       POSTGRES_PASSWORD: postgres
       POSTGRES_USER: postgres
+    volumes:
+      - pento-postgres-data:/var/lib/postgresql/data
   web:
     build: .
     command: mix phx.server
@@ -14,3 +16,7 @@ services:
       - "4000:4000"
     depends_on:
       - db
+volumes:
+  # docker volume create --name pento-postgres-data -d local
+  pento-postgres-data:
+    external: true
