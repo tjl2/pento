@@ -1,7 +1,7 @@
 defmodule PentoWeb.WrongLive do
   use Phoenix.LiveView, layout: {PentoWeb.LayoutView, "live.html"}
 
-  def mount(_params, _session, socket) do
+  def mount(_params, session, socket) do
     answer = 1..10 |> Enum.random()
 
     {
@@ -10,7 +10,8 @@ defmodule PentoWeb.WrongLive do
         socket,
         answer: answer,
         score: 0,
-        message: "Make a guess:"
+        message: "Make a guess:",
+        session_id: session["live_socket_id"]
       )
     }
   end
@@ -26,6 +27,10 @@ defmodule PentoWeb.WrongLive do
         <a href="#" phx-click="guess" phx-value-number={n} phx-value-answer={@answer}><%= n %></a>
       <% end %>
     </h2>
+    <pre>
+      <%= @current_user.email %>
+      <%= @session_id %>
+    </pre>
     """
   end
 
