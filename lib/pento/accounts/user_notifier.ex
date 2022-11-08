@@ -1,4 +1,7 @@
 defmodule Pento.Accounts.UserNotifier do
+  @moduledoc """
+  The Accounts.UserNotifier module
+  """
   import Swoosh.Email
 
   alias Pento.Mailer

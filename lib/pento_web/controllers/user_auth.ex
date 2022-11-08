@@ -1,4 +1,8 @@
 defmodule PentoWeb.UserAuth do
+  @moduledoc """
+  The UserAuth controller.
+  """
+
   import Plug.Conn
   import Phoenix.Controller
 

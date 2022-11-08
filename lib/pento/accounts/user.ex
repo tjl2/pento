@@ -1,4 +1,7 @@
 defmodule Pento.Accounts.User do
+  @moduledoc """
+  The Accounts.User module
+  """
   use Ecto.Schema
   import Ecto.Changeset
 
