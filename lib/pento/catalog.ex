@@ -101,4 +101,23 @@ defmodule Pento.Catalog do
   def change_product(%Product{} = product, attrs \\ %{}) do
     Product.changeset(product, attrs)
   end
+
+  @doc """
+  Mark down the price of a product by a given amount.
+
+  ## Examples
+
+      iex> decrease_price(product, %{unit_price: 10.0})
+      {:ok, %Product{}}
+
+      iex> decrease_price(product, %{unit_price: 100.0})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def markdown_product(%Product{} = product, reduction_amount) do
+    product
+    |> Product.decrease_price(%{unit_price: product.unit_price - reduction_amount})
+    |> Repo.update()
+  end
+
 end
