@@ -119,5 +119,4 @@ defmodule Pento.Catalog do
     |> Product.decrease_price(%{unit_price: product.unit_price - reduction_amount})
     |> Repo.update()
   end
-
 end
