@@ -1,4 +1,8 @@
 defmodule Pento.Catalog.Product do
+  @moduledoc """
+  The Product context.
+  """
+
   use Ecto.Schema
   import Ecto.Changeset
 

@@ -1,4 +1,8 @@
 defmodule PentoWeb.LiveHelpers do
+  @moduledoc """
+  LiveView helpers for PentoWeb.
+  """
+
   import Phoenix.LiveView
   import Phoenix.LiveView.Helpers
 
