@@ -107,10 +107,10 @@ defmodule Pento.Catalog do
 
   ## Examples
 
-      iex> decrease_price(product, %{unit_price: 10.0})
+      iex> markdown_product(product, 10.0})
       {:ok, %Product{}}
 
-      iex> decrease_price(product, %{unit_price: 100.0})
+      iex> markdown_product(product, -100.0})
       {:error, %Ecto.Changeset{}}
 
   """
