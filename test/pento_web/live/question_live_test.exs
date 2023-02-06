@@ -14,7 +14,7 @@ defmodule PentoWeb.QuestionLiveTest do
   end
 
   describe "Index" do
-    setup [:create_question]
+    setup [:create_question, :register_and_log_in_user]
 
     test "lists all questions", %{conn: conn, question: question} do
       {:ok, _index_live, html} = live(conn, Routes.question_index_path(conn, :index))
@@ -76,7 +76,7 @@ defmodule PentoWeb.QuestionLiveTest do
   end
 
   describe "Show" do
-    setup [:create_question]
+    setup [:create_question, :register_and_log_in_user]
 
     test "displays question", %{conn: conn, question: question} do
       {:ok, _show_live, html} = live(conn, Routes.question_show_path(conn, :show, question))
