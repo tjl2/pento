@@ -1,4 +1,7 @@
 defmodule Pento.Faq.Question do
+  @moduledoc """
+  The Question schema.
+  """
   use Ecto.Schema
   import Ecto.Changeset
 
