@@ -25,18 +25,12 @@ defmodule Pento.Catalog.Product do
   end
 
   @doc """
-  Decrease the price of a product by a given amount.
-
-  ## Examples
-  iex> decrease_price(product, %{unit_price: 10.0})
-  {:ok, %Product{}}
-
-  iex> decrease_price(product, %{unit_price: 100.0})
-  {:error, %Ecto.Changeset{}}
+  Return changeset to decrease the price of a product by a given amount.
   """
   def decrease_price(product, attrs) do
     product
     |> cast(attrs, [:unit_price])
+    |> validate_number(:unit_price, greater_than: 0)
     |> validate_number(:unit_price, less_than: product.unit_price)
   end
 end
