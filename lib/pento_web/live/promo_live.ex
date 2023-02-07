@@ -6,25 +6,33 @@ defmodule PentoWeb.PromoLive do
   @impl true
   def mount(_params, _session, socket) do
     {:ok,
-      socket
-      |> assign_recipient()
-      |> assign_changeset()}
+     socket
+     |> assign_recipient()
+     |> assign_changeset()}
   end
 
   @impl true
-   def handle_event("validate", %{"recipient" => recipient_params}, %{assigns: %{recipient: recipient}} = socket) do
-      changeset =
-        recipient
-        |> Promo.change_recipient(recipient_params)
-        |> Map.put(:action, :validate)
+  def handle_event(
+        "validate",
+        %{"recipient" => recipient_params},
+        %{assigns: %{recipient: recipient}} = socket
+      ) do
+    changeset =
+      recipient
+      |> Promo.change_recipient(recipient_params)
+      |> Map.put(:action, :validate)
 
-      {:noreply,
-        socket
-        |> assign(:changeset, changeset)}
-   end
+    {:noreply,
+     socket
+     |> assign(:changeset, changeset)}
+  end
 
   @impl true
-   def handle_event("save", %{"recipient" => recipient_params}, %{assigns: %{recipient: recipient}} = socket) do
+  def handle_event(
+        "save",
+        %{"recipient" => recipient_params},
+        %{assigns: %{recipient: recipient}} = socket
+      ) do
     changeset =
       recipient
       |> Promo.send_promo(recipient_params)
@@ -32,16 +40,17 @@ defmodule PentoWeb.PromoLive do
     case changeset do
       {:ok, _recipient} ->
         {:noreply,
-          socket
-          |> put_flash(:info, "Email sent successfully")
-          |> push_redirect(to: Routes.live_path(socket, __MODULE__))}
+         socket
+         |> put_flash(:info, "Email sent successfully")
+         |> push_redirect(to: Routes.live_path(socket, __MODULE__))}
+
       {:error, %Ecto.Changeset{} = changeset} ->
         {:noreply,
-          socket
-          |> put_flash(:error, "Invalid recipient")
-          |> assign(:changeset, changeset)}
+         socket
+         |> put_flash(:error, "Invalid recipient")
+         |> assign(:changeset, changeset)}
     end
-   end
+  end
 
   defp assign_recipient(socket) do
     socket

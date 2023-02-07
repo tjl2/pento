@@ -34,3 +34,5 @@ npm-debug.log
 
 # ElixirLS code navigation cache directory
 /.elixir_ls/
+
+/priv/static/images/live_view_upload*
