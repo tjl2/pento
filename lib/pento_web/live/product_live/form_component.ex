@@ -35,6 +35,15 @@ defmodule PentoWeb.ProductLive.FormComponent do
     save_product(socket, socket.assigns.action, product_params)
   end
 
+  def upload_image_error(%{image: %{errors: errors}}, entry) when length(errors) > 0 do
+    {_, msg} =
+      Enum.find(errors, fn {ref, _} ->
+        ref == entry.ref || ref == entry.upload_ref
+      end)
+    upload_error_msg(msg)
+  end
+  def upload_image_error(_, _), do: ""
+
   defp save_product(socket, :edit, params) do
     case Catalog.update_product(socket.assigns.product, product_params(socket, params)) do
       {:ok, _product} ->
@@ -82,4 +91,8 @@ defmodule PentoWeb.ProductLive.FormComponent do
     File.cp!(path, dest)
     {:ok, Routes.static_path(socket, "/images/#{Path.basename(dest)}")}
   end
+
+  defp upload_error_msg(:not_accepted), do: "Invalid file type"
+  defp upload_error_msg(:too_large), do: "File is too large"
+  defp upload_error_msg(:too_many_files), do: "Too many files"
 end
